@@ -1,4 +1,4 @@
-import { BrowserHandler } from './infrastructure/browser/browser-handler';
+import { BrowserHandler } from './infrastructure/browser-handler';
 import { SessionManager } from './application/session-manager';
 import 'dotenv/config';
 

@@ -1,7 +1,7 @@
 
 import puppeteer from "puppeteer";
 import path from "path";
-import { Arguments } from "../../utils/constructor";
+import { Arguments } from "../utils/constructor";
 
 export class BrowserHandler extends Arguments {
     constructor() {
@@ -18,6 +18,7 @@ export class BrowserHandler extends Arguments {
         });
         const page = await browser.newPage();
         await page.goto(url);
+        await page.screenshot();
         await browser.close();
     }
 }

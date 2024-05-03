@@ -1,4 +1,4 @@
-import { BrowserHandler } from '../infrastructure/browser/browser-handler';
+import { BrowserHandler } from '../infrastructure/browser-handler';
 
 export class SessionManager {
     private browserHandler: BrowserHandler;
