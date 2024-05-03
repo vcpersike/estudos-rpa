@@ -1,0 +1,23 @@
+# Ignorar todos os arquivos .log
+*.log
+
+# Ignorar diretório de configurações do IDE
+.idea/
+
+# Ignorar diretório de dependências
+node_modules/
+
+# Ignorar arquivos de configuração sensíveis
+config.json
+
+# Ignorar arquivos temporários
+*.tmp
+*.temp
+
+# Ignorar arquivos de build
+/dist/
+
+# Ignorar arquivos de ambiente
+.env
+
+/src/utils/cookies.json/
