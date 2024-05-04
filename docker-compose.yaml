@@ -1,0 +1,7 @@
+services:
+  puppeteer:
+    build: .
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "3000:3000"

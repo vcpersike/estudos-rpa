@@ -1,9 +1,0 @@
-{
-  "puppeteerArgs": [
-    "--no-sandbox",
-    "--disable-accelerated-2d-canvas",
-    "--disable-gpu"
-    
-    
-  ]
-}

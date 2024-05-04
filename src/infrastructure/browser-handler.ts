@@ -1,19 +1,21 @@
 import puppeteer from "puppeteer";
 import path from "path";
-import { Arguments } from "../utils/constructor";
 import { sleep } from "../utils/sleep";
+import { PERFORMANCE_ARGS } from "../utils/envs";
 
-export class BrowserHandler extends Arguments {
-  constructor() {
-    super();
-  }
+export class BrowserHandler {
 
   async openForManualLogin(url: string): Promise<void> {
     console.log("Attempting to navigate to URL:", url);
 
+    console.log("Browser launched", puppeteer.executablePath());
     const browser = await puppeteer.launch({
-      headless: process.env.BROWSER_HEADLESS === "false" ? false : true,
-      args: this.puppeteerArgs,
+      headless: process.env.PUPPETEER_EXECUTABLE_PATH ? true : false,
+      defaultViewport: null,
+      args: process.env.PUPPETEER_EXECUTABLE_PATH ? PERFORMANCE_ARGS : [],
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
       userDataDir: path.join(__dirname, "..", "utils", "cookies.json"),
     });
     const page = await browser.newPage();
