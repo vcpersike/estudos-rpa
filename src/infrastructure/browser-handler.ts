@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer";
 import path from "path";
 import { Arguments } from "../utils/constructor";
+import { sleep } from "../utils/sleep";
 
 export class BrowserHandler extends Arguments {
   constructor() {
@@ -17,6 +18,7 @@ export class BrowserHandler extends Arguments {
     });
     const page = await browser.newPage();
     await page.goto(url);
+    await sleep(5000);
     await page.screenshot({
       path: "./screenshot/example.png",
     });
