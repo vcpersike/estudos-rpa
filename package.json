@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cp -R node_modules/puppeteer/.local-chromium node_modules/puppeteer/.local-chromium",
     "start": "npx ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
@@ -25,7 +24,9 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "puppeteer": "^22.7.1",
-    "dotenv": "^16.4.5"
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }

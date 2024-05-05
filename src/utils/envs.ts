@@ -23,6 +23,11 @@ export const PERFORMANCE_ARGS = [
     '--disable-renderer-backgrounding',
     '--disable-setuid-sandbox',
     '--disable-speech-api',
+    '--disable-infobars',
+    '--window-position=0,0',
+    '--ignore-certifcate-errors',
+    '--ignore-certifcate-errors-spki-list',
+
     '--disable-sync',
     '--hide-scrollbars',
     '--ignore-gpu-blacklist',
