@@ -50,7 +50,6 @@ export class BrowserHandler {
         await page.goto(url, { waitUntil: "networkidle0" });
         await sleep(1000);
 
-        // Voting interaction
         await page.waitForSelector('.voting-button--hidden[data-id="4035"][data-participant-id="463"]', { visible: true });
         await page.click('.voting-button--hidden[data-id="4035"][data-participant-id="463"]');
         const buttonSelector = ".card-selectable-action > button.voting-button";
