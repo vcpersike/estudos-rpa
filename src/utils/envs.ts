@@ -1,4 +1,4 @@
-export const APIKEY_2CAPTCHA = "8d87075aaa2d48ec4798c33e8705cc3a"
+export const APIKEY_2CAPTCHA = "2ae3bd804029a2e84324d5eeb46e1b94"
 
 export const PERFORMANCE_ARGS = [
     '--autoplay-policy=user-gesture-required',

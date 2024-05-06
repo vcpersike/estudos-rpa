@@ -68,7 +68,7 @@ export class BrowserHandler {
         });
         await page.click("button.vote-confirmation__button");
         await sleep(1000);
-        const selector = "#selectable-4035"; // Usando o ID do elemento
+        const selector = "#selectable-4035";
         await page.waitForSelector(selector, { visible: true });
         await page.click(selector);
         await sleep(1000);
