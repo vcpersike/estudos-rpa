@@ -1,5 +1,3 @@
-export const APIKEY_2CAPTCHA = "2ae3bd804029a2e84324d5eeb46e1b94"
-
 export const PERFORMANCE_ARGS = [
     '--autoplay-policy=user-gesture-required',
     '--disable-background-networking',

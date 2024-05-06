@@ -1,16 +1,17 @@
 import path from "path";
 import { sleep } from "../utils/sleep";
-import { APIKEY_2CAPTCHA, PERFORMANCE_ARGS } from "../utils/envs";
+import { PERFORMANCE_ARGS } from "../utils/envs";
 import puppeteer from "puppeteer-extra";
 import RecaptchaPlugin from "puppeteer-extra-plugin-recaptcha";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import 'dotenv/config';
 
 puppeteer.use(StealthPlugin());
 
 const recaptchaPlugin = RecaptchaPlugin({
   provider: {
     id: "2captcha",
-    token: APIKEY_2CAPTCHA,
+    token: process.env.APIKEY_2CAPTCHA
   },
 });
 puppeteer.use(recaptchaPlugin);
