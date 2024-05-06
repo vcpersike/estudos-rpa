@@ -1,10 +1,13 @@
 {
     "cSpell.words": [
+        "APIKEY",
         "autoplay",
         "backgrounding",
         "breakpad",
         "Interactor",
         "keychain",
+        "networkidle",
+        "Recaptchas",
         "repost",
         "scrollbars",
         "swiftshader"

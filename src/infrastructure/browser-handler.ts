@@ -1,17 +1,23 @@
 import path from "path";
 import { sleep } from "../utils/sleep";
-import { PERFORMANCE_ARGS } from "../utils/envs";
-import puppeteer from 'puppeteer-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { APIKEY_2CAPTCHA, PERFORMANCE_ARGS } from "../utils/envs";
+import puppeteer from "puppeteer-extra";
+import RecaptchaPlugin from "puppeteer-extra-plugin-recaptcha";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 puppeteer.use(StealthPlugin());
 
-export class BrowserHandler {
+const recaptchaPlugin = RecaptchaPlugin({
+  provider: {
+    id: "2captcha",
+    token: APIKEY_2CAPTCHA,
+  },
+});
+puppeteer.use(recaptchaPlugin);
 
+export class BrowserHandler {
   async openForManualLogin(url: string): Promise<void> {
     console.log("Attempting to navigate to URL:", url);
-
-    console.log("Browser launched", puppeteer.executablePath());
     const browser = await puppeteer.launch({
       headless: process.env.PUPPETEER_EXECUTABLE_PATH ? true : false,
       defaultViewport: null,
@@ -23,13 +29,45 @@ export class BrowserHandler {
     });
     const page = await browser.newPage();
 
-    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246');
+    await page.goto(url, { waitUntil: "networkidle0" });
+    await sleep(3000);
 
-    await page.goto(url);
-    await sleep(50000);
-    await page.screenshot({
-      path: "./screenshot/example.png",
-    });
-    await browser.close();
+    try {
+      const numberOfVotes = 10000;
+
+      for (let i = 0; i < numberOfVotes; i++) {
+        console.log(`Iniciando tentativa de voto número ${i + 1}`);
+
+        await page.waitForSelector(
+          '.voting-button--hidden[data-id="4035"][data-participant-id="463"]',
+          { visible: true }
+        );
+        await page.click(
+          '.voting-button--hidden[data-id="4035"][data-participant-id="463"]'
+        );
+        const buttonSelector = ".card-selectable-action > button.voting-button";
+        await page.waitForSelector(buttonSelector);
+        const button = await page.$(buttonSelector);
+        await page.solveRecaptchas();
+        await button?.click();
+        await sleep(1000);
+        console.log("Botão de votação clicado.");
+
+        await page.waitForSelector("button.vote-confirmation__button", {
+          visible: true,
+        });
+        await page.click("button.vote-confirmation__button");
+        await sleep(1000);
+        const selector = "#selectable-4035"; // Usando o ID do elemento
+        await page.waitForSelector(selector, { visible: true });
+        await page.click(selector);
+        await sleep(1000);
+      }
+    } catch (error) {
+      console.error("Erro ao tentar clicar no botão:", error);
+    } finally {
+      await browser.close();
+      console.log("Navegador fechado.");
+    }
   }
 }
