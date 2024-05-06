@@ -30,7 +30,7 @@ export class BrowserHandler {
     const page = await browser.newPage();
 
     await page.goto(url, { waitUntil: "networkidle0" });
-    await sleep(3000);
+    await sleep(1000);
 
     try {
       const numberOfVotes = 10000;
