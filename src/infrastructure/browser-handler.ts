@@ -28,6 +28,16 @@ export class BrowserHandler {
       userDataDir: path.join(__dirname, "..", "utils", "cookies.json"),
     });
     const page = await browser.newPage();
+    await page.setRequestInterception(true);
+    page.on('request', request => {
+      request.continue();
+    });
+
+    page.on('response', async response => {
+      if (response.url().endsWith('.r7.com/vote')) {
+        console.log(response.status());
+      }
+    });
 
     await page.goto(url, { waitUntil: "networkidle0" });
     await sleep(1000);
