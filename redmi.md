@@ -34,3 +34,32 @@
     "--use-gl=swiftshader",
     "--use-mock-keychain",
     "--single-process"
+
+    ─ Dockerfile
+├── data
+├── dist
+│   ├── application
+│   │   └── session-manager.js
+│   ├── index.js
+│   ├── infrastructure
+│   │   └── browser-handler.js
+│   └── utils
+│       ├── envs.js
+│       └── sleep.js
+├── docker-compose.yaml
+├── package-lock.json
+├── package.json
+├── redmi.md
+├── screenshot
+├── src
+│   ├── application
+│   │   └── session-manager.ts
+│   ├── index.ts
+│   ├── infrastructure
+│   │   └── browser-handler.ts
+│   └── utils
+│       ├── envs.ts
+│       └── sleep.ts
+└── tsconfig.json
+
+11 directories, 16 files
