@@ -40,6 +40,11 @@ export class RedisHandler {
         return await RedisHandler.client.del(key);
     }
 
+    async incr(key: string): Promise<number> {
+        await this.connect();
+        return await RedisHandler.client.incr(key);
+    }
+
     async quit(): Promise<void> {
         if (RedisHandler.client.isOpen) {
             await RedisHandler.client.quit();

@@ -37,14 +37,14 @@ export class BrowserHandler {
     });
 
     page.on('response', async response => {
-      if (response.status() === 200) {
-        const key = `status-200`;
-        const currentCount = await this.redisHandler.get(key) || "0";
-        await this.redisHandler.set(key, (parseInt(currentCount) + 1).toString());
-      } else if (response.status() === 401) {
-        const key = `status-401`;
-        const currentCount = await this.redisHandler.get(key) || "0";
-        await this.redisHandler.set(key, (parseInt(currentCount) + 1).toString());
+      if (response.url().endsWith('.r7.com/vote')) {
+        if (response.status() === 200) {
+          const key = process.env.REDIS_KEY_PREFIX_200 || '';
+          await this.redisHandler.incr(key);
+        } else if (response.status() === 401) {
+          const key = process.env.REDIS_KEY_PREFIX_401 || '';
+          await this.redisHandler.incr(key);
+        }
       }
     });
 

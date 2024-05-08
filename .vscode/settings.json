@@ -4,6 +4,7 @@
         "autoplay",
         "backgrounding",
         "breakpad",
+        "fabi",
         "Interactor",
         "keychain",
         "networkidle",
